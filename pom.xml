@@ -36,11 +36,6 @@
         <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
-      <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>javax.servlet-api</artifactId>
-          <version>9.0.55</version>
-      </dependency>
   </dependencies>
 
   <build>
