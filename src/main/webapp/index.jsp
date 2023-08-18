@@ -45,9 +45,15 @@
   <br>
 
   <button type="submit">Calculate Reimbursement</button>
+
 </form>
 
 <h2>Total Reimbursement Amount: <%= request.getAttribute("totalReimbursement") %></h2>
+
+<hr>
+
+<h3>Admin Page</h3>
+<a href="admin.jsp"><button>Go to Admin Page</button></a>
 
 <script>
   const addReceiptButton = document.getElementById('addReceiptButton');

@@ -50,5 +50,8 @@
     <input type="submit" name="action" value="Save Receipt Types">
 </form>
 
+<hr>
+<h3>User Page</h3>
+<a href="index.jsp"><button>Go to User Page</button></a>
 </body>
 </html>
