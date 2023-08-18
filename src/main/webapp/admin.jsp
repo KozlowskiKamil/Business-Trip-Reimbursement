@@ -40,18 +40,14 @@
 <hr>
 
 <form action="${pageContext.request.contextPath}/admin" method="post">
-    <label for="receiptTypeNames">Edit Available Receipt Types:</label>
-    <select name="receiptTypeNames" multiple>
-        <c:forEach items="${adminConfig.availableReceiptTypes}" var="receiptType">
-            <option value="${receiptType.name}">${receiptType.name}</option>
-        </c:forEach>
-    </select>
+    <label for="receiptTypeNames">Edit Available Receipt Types (comma-separated):</label>
+    <input type="text" name="receiptTypeNames" value="${adminConfig.getFormattedReceiptTypeNames()}">
     <br>
     <input type="submit" name="action" value="Save Receipt Types">
 </form>
 
 <hr>
 <h3>User Page</h3>
-<a href="index.jsp"><button>Go to User Page</button></a>
+<a href="/business_trip_reimbursement_war_exploded/reimbursement"><button>Go to User Page</button></a>
 </body>
 </html>

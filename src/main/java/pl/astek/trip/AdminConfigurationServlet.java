@@ -57,12 +57,15 @@ public class AdminConfigurationServlet extends HttpServlet {
         System.out.println("distanceLimit = " + distanceLimit);
 
         availableReceiptTypes.clear();
-        String[] receiptTypeNames = request.getParameterValues("receiptTypeNames");
+
+        String receiptTypeNamesInput = request.getParameter("receiptTypeNames");
+        String[] receiptTypeNames = receiptTypeNamesInput.split(",");
+
+        availableReceiptTypes.clear();
         for (String receiptTypeName : receiptTypeNames) {
-            availableReceiptTypes.add(new ReceiptType(receiptTypeName));
+            availableReceiptTypes.add(new ReceiptType(receiptTypeName.trim()));
         }
         adminConfig.setAvailableReceiptTypes(availableReceiptTypes);
-
 
         session.setAttribute("adminConfig", adminConfig);
 
@@ -128,4 +131,13 @@ public class AdminConfigurationServlet extends HttpServlet {
                 ", distanceLimit=" + distanceLimit +
                 '}';
     }
+
+    public String getFormattedReceiptTypeNames() {
+        StringBuilder formattedNames = new StringBuilder();
+        for (ReceiptType receiptType : availableReceiptTypes) {
+            formattedNames.append(receiptType.getName()).append(",");
+        }
+        return formattedNames.toString();
+    }
+
 }

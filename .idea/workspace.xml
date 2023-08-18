@@ -10,13 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c6edcc5-bd35-433c-80a2-005e12e012ca" name="Changes" comment="working">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/AdminConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/AdminConfigurationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfigurationServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Receipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/Receipt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReceiptType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReceiptType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementClaim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementClaim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementClaimServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementClaimServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfigurationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfigurationServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
