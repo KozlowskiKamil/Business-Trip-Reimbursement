@@ -24,7 +24,8 @@
     <br>
 
     <label for="receiptAmount">Receipt Amount:</label>
-    <input type="number" id="receiptAmount" name="receiptAmount" step="0.01" required>
+    <input type="number" id="receiptAmount" name="receiptAmount" step="0.01" required
+           max="${sessionScope.singleReceiptLimit != null ? sessionScope.singleReceiptLimit : 100.0}">
     <br>
 
     <button type="button" id="addReceiptButton">Add Receipt</button>
