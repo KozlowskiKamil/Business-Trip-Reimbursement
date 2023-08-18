@@ -24,4 +24,12 @@ public class Receipt {
     public double getAmount() {
         return amount;
     }
+
+    @Override
+    public String toString() {
+        return "Receipt{" +
+                "type='" + type + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
 }

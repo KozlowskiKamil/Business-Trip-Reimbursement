@@ -50,4 +50,14 @@ public class ReimbursementClaim {
         this.claimedMileage = claimedMileage;
     }
 
+    @Override
+    public String toString() {
+        return "ReimbursementClaim{" +
+                "tripDate='" + tripDate + '\'' +
+                ", receipts=" + receipts +
+                ", claimedTripDays=" + claimedTripDays +
+                ", disableDays=" + disableDays +
+                ", claimedMileage=" + claimedMileage +
+                '}';
+    }
 }
