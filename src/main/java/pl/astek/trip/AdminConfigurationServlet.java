@@ -5,31 +5,49 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @WebServlet("/admin")
 public class AdminConfigurationServlet extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(AdminConfigurationServlet.class);
+
+
+    private double dailyAllowanceRate = 15.0;
+    private double mileageRate = 0.3;
+    private List<ReceiptType> availableReceiptTypes = new ArrayList<>();
+    private double singleReceiptLimit = 100.0;
+    private double totalReimbursementLimit = 500.0;
+    private double distanceLimit = 100.0;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        AdminConfiguration adminConfig = getAdminConfiguration();
+        HttpSession session = request.getSession(true);
+        AdminConfigurationServlet adminConfig = this;
 
-        request.setAttribute("adminConfig", adminConfig);
+        session.setAttribute("adminConfig", adminConfig);
         request.getRequestDispatcher("/admin.jsp").forward(request, response);
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        AdminConfiguration adminConfig = new AdminConfiguration();
+        HttpSession session = request.getSession();
+        AdminConfigurationServlet adminConfig = (AdminConfigurationServlet) session.getAttribute("adminConfig");
 
         double dailyAllowanceRate = Double.parseDouble(request.getParameter("dailyAllowanceRate"));
         double mileageRate = Double.parseDouble(request.getParameter("mileageRate"));
         adminConfig.setDailyAllowanceRate(dailyAllowanceRate);
         adminConfig.setMileageRate(mileageRate);
+        session.setAttribute("dailyAllowanceRate", dailyAllowanceRate);
+        session.setAttribute("mileageRate", mileageRate);
+        System.out.println("dailyAllowanceRate = " + dailyAllowanceRate);
+        System.out.println("mileageRate = " + mileageRate);
 
-        List<ReceiptType> availableReceiptTypes = new ArrayList<>();
+        availableReceiptTypes.clear();
         String[] receiptTypeNames = request.getParameterValues("receiptTypeNames");
         for (String receiptTypeName : receiptTypeNames) {
             availableReceiptTypes.add(new ReceiptType(receiptTypeName));
@@ -42,17 +60,69 @@ public class AdminConfigurationServlet extends HttpServlet {
         adminConfig.setSingleReceiptLimit(singleReceiptLimit);
         adminConfig.setTotalReimbursementLimit(totalReimbursementLimit);
         adminConfig.setDistanceLimit(distanceLimit);
+
+        session.setAttribute("adminConfig", adminConfig);
+
         response.sendRedirect(request.getContextPath() + "/admin.jsp");
     }
 
-    private AdminConfiguration getAdminConfiguration() {
-        AdminConfiguration adminConfig = new AdminConfiguration();
-        adminConfig.setDailyAllowanceRate(15.0);
-        adminConfig.setMileageRate(0.3);
-        adminConfig.setAvailableReceiptTypes(new ArrayList<>());
-        adminConfig.setSingleReceiptLimit(100.0);
-        adminConfig.setTotalReimbursementLimit(500.0);
-        adminConfig.setDistanceLimit(100.0);
-        return adminConfig;
+    public double getDailyAllowanceRate() {
+        return dailyAllowanceRate;
+    }
+
+    public void setDailyAllowanceRate(double dailyAllowanceRate) {
+        this.dailyAllowanceRate = dailyAllowanceRate;
+    }
+
+    public double getMileageRate() {
+        return mileageRate;
+    }
+
+    public void setMileageRate(double mileageRate) {
+        this.mileageRate = mileageRate;
+    }
+
+    public List<ReceiptType> getAvailableReceiptTypes() {
+        return availableReceiptTypes;
+    }
+
+    public void setAvailableReceiptTypes(List<ReceiptType> availableReceiptTypes) {
+        this.availableReceiptTypes = availableReceiptTypes;
+    }
+
+    public double getSingleReceiptLimit() {
+        return singleReceiptLimit;
+    }
+
+    public void setSingleReceiptLimit(double singleReceiptLimit) {
+        this.singleReceiptLimit = singleReceiptLimit;
+    }
+
+    public double getTotalReimbursementLimit() {
+        return totalReimbursementLimit;
+    }
+
+    public void setTotalReimbursementLimit(double totalReimbursementLimit) {
+        this.totalReimbursementLimit = totalReimbursementLimit;
+    }
+
+    public double getDistanceLimit() {
+        return distanceLimit;
+    }
+
+    public void setDistanceLimit(double distanceLimit) {
+        this.distanceLimit = distanceLimit;
+    }
+
+    @Override
+    public String toString() {
+        return "AdminConfigurationServlet{" +
+                "dailyAllowanceRate=" + dailyAllowanceRate +
+                ", mileageRate=" + mileageRate +
+                ", availableReceiptTypes=" + availableReceiptTypes +
+                ", singleReceiptLimit=" + singleReceiptLimit +
+                ", totalReimbursementLimit=" + totalReimbursementLimit +
+                ", distanceLimit=" + distanceLimit +
+                '}';
     }
 }
