@@ -18,7 +18,6 @@ public class ReimbursementClaimServlet extends HttpServlet {
         LocalDate tripDate = LocalDate.parse(request.getParameter("tripDate"));
         List<Receipt> receipts = new ArrayList<>();
 
-        // Pobieranie paragonów z formularza i dodawanie do listy receipts
         String[] receiptTypes = request.getParameterValues("receipts[].type");
         String[] receiptAmounts = request.getParameterValues("receipts[].amount");
         for (int i = 0; i < receiptTypes.length; i++) {
@@ -38,7 +37,6 @@ public class ReimbursementClaimServlet extends HttpServlet {
         claim.setDisableDays(disableDays);
         claim.setClaimedMileage(claimedMileage);
 
-        // Pobierz stawki z AdminConfigurationServlet lub z bazy danych
         double dailyAllowanceRate = 15.0;
         double mileageRate = 0.3;
 
@@ -50,15 +48,12 @@ public class ReimbursementClaimServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Pobierz stawki z AdminConfigurationServlet lub z bazy danych
         double dailyAllowanceRate = 15.0;
         double mileageRate = 0.3;
 
-        // Ustaw te wartości w atrybutach, aby były dostępne w formularzu JSP
         request.setAttribute("dailyAllowanceRate", dailyAllowanceRate);
         request.setAttribute("mileageRate", mileageRate);
 
-        // Przekierowanie do strony z formularzem
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }
