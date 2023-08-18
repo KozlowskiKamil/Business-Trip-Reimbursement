@@ -47,11 +47,14 @@
 
     <br>
 
-    <button type="submit">Calculate Reimbursement</button>
+    <button type="submit" id="calculateButton">Calculate Reimbursement</button>
 
 </form>
 
 <h2>Total Reimbursement Amount: <%= request.getAttribute("totalReimbursement") %> $</h2>
+<c:if test="${sessionScope.totalReimbursementLimit != null}">
+    <h2>Total Reimbursement Limit: <%= session.getAttribute("totalReimbursementLimit") %> $</h2>
+</c:if>
 
 <hr>
 
@@ -95,6 +98,27 @@
         if (receiptInputs.length > 0) {
             receiptCounter = receiptInputs.length;
         }
+    });
+
+    function hasAtLeastOneReceipt() {
+        const receiptInputs = document.querySelectorAll('input[name^="receipts["]');
+        for (const input of receiptInputs) {
+            if (input.value !== '') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const calculateButton = document.getElementById('calculateButton');
+
+        calculateButton.addEventListener('click', (event) => {
+            if (!hasAtLeastOneReceipt()) {
+                event.preventDefault();
+                alert('Please add at least one receipt before calculating reimbursement.');
+            }
+        });
     });
 </script>
 </body>

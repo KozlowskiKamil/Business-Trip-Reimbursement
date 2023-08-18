@@ -1,6 +1,7 @@
 package pl.astek.trip;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -42,17 +43,23 @@ public class ReimbursementClaimServlet extends HttpServlet {
         HttpSession session = request.getSession();
         double dailyAllowanceRate;
         double mileageRate;
+        double totalReimbursementLimit;
 
-        if (session.getAttribute("dailyAllowanceRate") != null && session.getAttribute("mileageRate") != null) {
+        if (session.getAttribute("dailyAllowanceRate") != null && session.getAttribute("mileageRate") != null && session.getAttribute("totalReimbursementLimit") != null) {
             dailyAllowanceRate = (Double) session.getAttribute("dailyAllowanceRate");
             mileageRate = (Double) session.getAttribute("mileageRate");
+            totalReimbursementLimit = (Double) session.getAttribute("totalReimbursementLimit");
         } else {
             dailyAllowanceRate = 15.0;
             mileageRate = 0.3;
+            totalReimbursementLimit = 500.0;
         }
 
         double totalReimbursement = ReimbursementCalculator.calculateTotalReimbursement(claim, dailyAllowanceRate, mileageRate);
         request.setAttribute("totalReimbursement", totalReimbursement);
+        session.setAttribute("totalReimbursement", totalReimbursement);
+        session.setAttribute("totalReimbursementLimit", totalReimbursementLimit);
+        request.setAttribute("totalReimbursementLimit", totalReimbursementLimit);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         dispatcher.forward(request, response);
     }
@@ -61,17 +68,22 @@ public class ReimbursementClaimServlet extends HttpServlet {
         HttpSession session = request.getSession();
         double dailyAllowanceRate;
         double mileageRate;
+        double totalReimbursementLimit;
 
-        if (session.getAttribute("dailyAllowanceRate") != null && session.getAttribute("mileageRate") != null) {
+        if (session.getAttribute("dailyAllowanceRate") != null && session.getAttribute("mileageRate") != null && session.getAttribute("totalReimbursementLimit") != null) {
             dailyAllowanceRate = (Double) session.getAttribute("dailyAllowanceRate");
             mileageRate = (Double) session.getAttribute("mileageRate");
+            totalReimbursementLimit = (Double) session.getAttribute("totalReimbursementLimit");
         } else {
             dailyAllowanceRate = 15.0;
             mileageRate = 0.3;
+            totalReimbursementLimit = 500.0;
         }
 
         request.setAttribute("dailyAllowanceRate", dailyAllowanceRate);
         request.setAttribute("mileageRate", mileageRate);
+        session.setAttribute("totalReimbursementLimit", totalReimbursementLimit);
+        request.setAttribute("totalReimbursementLimit", totalReimbursementLimit);
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
