@@ -13,7 +13,6 @@ public class ReimbursementClaimServletTest {
 
     @Test
     void testDoPostCalculatesTotalReimbursement() throws IOException, ServletException {
-        // Arrange
         ReimbursementClaimServlet servlet = new ReimbursementClaimServlet();
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
@@ -32,7 +31,6 @@ public class ReimbursementClaimServletTest {
 
     @Test
     void testDoGetSetsRequestAttributesAndForwardsToIndexJSP() throws ServletException, IOException {
-        // Arrange
         ReimbursementClaimServlet servlet = new ReimbursementClaimServlet();
         HttpServletRequest request = mock(HttpServletRequest.class);
         HttpServletResponse response = mock(HttpServletResponse.class);
