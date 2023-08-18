@@ -10,13 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c6edcc5-bd35-433c-80a2-005e12e012ca" name="Changes" comment="working">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/AdminConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/AdminConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Receipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Receipt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReceiptType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/ReceiptType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementClaim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementClaim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementClaimServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementClaimServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/AdminConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/AdminConfigurationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfigurationServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Receipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/Receipt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReceiptType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReceiptType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementClaim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementClaim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementClaimServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementClaimServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="add_admin_panel" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

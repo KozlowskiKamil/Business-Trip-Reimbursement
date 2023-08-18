@@ -1,4 +1,4 @@
-package com.example.demo;
+package pl.astek.trip;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

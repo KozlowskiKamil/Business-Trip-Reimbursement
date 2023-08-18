@@ -1,4 +1,4 @@
-package com.example.demo;
+package pl.astek.trip;
 
 public class Receipt {
     private String type;

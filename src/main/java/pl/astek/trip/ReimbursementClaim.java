@@ -1,4 +1,4 @@
-package com.example.demo;
+package pl.astek.trip;
 
 import java.util.ArrayList;
 import java.util.List;
