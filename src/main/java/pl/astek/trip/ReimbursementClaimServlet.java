@@ -14,7 +14,7 @@ import java.util.List;
 
 @WebServlet("/reimbursement")
 public class ReimbursementClaimServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LocalDate tripDate = LocalDate.parse(request.getParameter("tripDate"));
         List<Receipt> receipts = new ArrayList<>();
 
@@ -47,7 +47,7 @@ public class ReimbursementClaimServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         double dailyAllowanceRate = 15.0;
         double mileageRate = 0.3;
 
