@@ -41,7 +41,9 @@
     <br>
 
     <label for="claimedMileage">Claimed Mileage (km):</label>
-    <input type="number" id="claimedMileage" name="claimedMileage" step="0.01">
+    <input type="number" id="claimedMileage" name="claimedMileage" step="0.1"
+           max="${sessionScope.distanceLimit != null ? sessionScope.distanceLimit : 100.0}">
+
     <br>
 
     <button type="submit">Calculate Reimbursement</button>

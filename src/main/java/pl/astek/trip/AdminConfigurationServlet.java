@@ -6,8 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,8 +14,6 @@ import java.util.List;
 
 @WebServlet("/admin")
 public class AdminConfigurationServlet extends HttpServlet {
-    private static final Logger logger = LoggerFactory.getLogger(AdminConfigurationServlet.class);
-
 
     private double dailyAllowanceRate = 15.0;
     private double mileageRate = 0.3;
@@ -40,12 +36,25 @@ public class AdminConfigurationServlet extends HttpServlet {
 
         double dailyAllowanceRate = Double.parseDouble(request.getParameter("dailyAllowanceRate"));
         double mileageRate = Double.parseDouble(request.getParameter("mileageRate"));
+        double singleReceiptLimit = Double.parseDouble(request.getParameter("singleReceiptLimit"));
+        double totalReimbursementLimit = Double.parseDouble(request.getParameter("totalReimbursementLimit"));
+        double distanceLimit = Double.parseDouble(request.getParameter("distanceLimit"));
         adminConfig.setDailyAllowanceRate(dailyAllowanceRate);
         adminConfig.setMileageRate(mileageRate);
+        adminConfig.setSingleReceiptLimit(singleReceiptLimit);
+        adminConfig.setTotalReimbursementLimit(totalReimbursementLimit);
+        adminConfig.setDistanceLimit(distanceLimit);
+
         session.setAttribute("dailyAllowanceRate", dailyAllowanceRate);
         session.setAttribute("mileageRate", mileageRate);
+        session.setAttribute("singleReceiptLimit", singleReceiptLimit);
+        session.setAttribute("totalReimbursementLimit", totalReimbursementLimit);
+        session.setAttribute("distanceLimit", distanceLimit);
         System.out.println("dailyAllowanceRate = " + dailyAllowanceRate);
         System.out.println("mileageRate = " + mileageRate);
+        System.out.println("singleReceiptLimit = " + singleReceiptLimit);
+        System.out.println("totalReimbursementLimit = " + totalReimbursementLimit);
+        System.out.println("distanceLimit = " + distanceLimit);
 
         availableReceiptTypes.clear();
         String[] receiptTypeNames = request.getParameterValues("receiptTypeNames");
@@ -54,12 +63,6 @@ public class AdminConfigurationServlet extends HttpServlet {
         }
         adminConfig.setAvailableReceiptTypes(availableReceiptTypes);
 
-        double singleReceiptLimit = Double.parseDouble(request.getParameter("singleReceiptLimit"));
-        double totalReimbursementLimit = Double.parseDouble(request.getParameter("totalReimbursementLimit"));
-        double distanceLimit = Double.parseDouble(request.getParameter("distanceLimit"));
-        adminConfig.setSingleReceiptLimit(singleReceiptLimit);
-        adminConfig.setTotalReimbursementLimit(totalReimbursementLimit);
-        adminConfig.setDistanceLimit(distanceLimit);
 
         session.setAttribute("adminConfig", adminConfig);
 
