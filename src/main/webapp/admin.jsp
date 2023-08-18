@@ -1,3 +1,5 @@
+<%@ page import="pl.astek.trip.ReceiptType" %>
+<%@ page import="pl.astek.trip.AdminConfigurationServlet" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -17,10 +19,16 @@
     <input type="number" step="0.01" name="mileageRate" value="${adminConfig.mileageRate}">
     <br>
 
-    <label for="receiptTypeNames">Available Receipt Types (comma-separated):</label>
-    <input type="text" name="receiptTypeNames"
-           value="<c:forEach items='${adminConfig.availableReceiptTypes}' var='receiptType'>${receiptType.name},</c:forEach>">
-    <br>
+        <label for="receiptTypeNames">Available Receipt Types (comma-separated):</label>
+        <input type="text" name="receiptTypeNames"
+               value="<%
+           AdminConfigurationServlet adminConfig = (AdminConfigurationServlet) request.getSession().getAttribute("adminConfig");
+           for (ReceiptType receiptType : adminConfig.getAvailableReceiptTypes()) {
+               out.print(receiptType.getName() + ",");
+           }
+       %>"
+        >
+        <br>
 
     <label for="singleReceiptLimit">Single Receipt Limit ($):</label>
     <input type="number" step="0.01" name="singleReceiptLimit" value="${adminConfig.singleReceiptLimit}">

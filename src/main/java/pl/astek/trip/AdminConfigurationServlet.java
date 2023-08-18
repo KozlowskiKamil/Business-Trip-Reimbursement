@@ -34,8 +34,11 @@ public class AdminConfigurationServlet extends HttpServlet {
         HttpSession session = request.getSession();
         AdminConfigurationServlet adminConfig = (AdminConfigurationServlet) session.getAttribute("adminConfig");
 
-        double dailyAllowanceRate = Double.parseDouble(request.getParameter("dailyAllowanceRate"));
-        double mileageRate = Double.parseDouble(request.getParameter("mileageRate"));
+        String dailyAllowanceRateParam = request.getParameter("dailyAllowanceRate");
+        double dailyAllowanceRate = 15.0;
+        if (dailyAllowanceRateParam != null && !dailyAllowanceRateParam.isEmpty()) {
+            dailyAllowanceRate = Double.parseDouble(dailyAllowanceRateParam);
+        }        double mileageRate = Double.parseDouble(request.getParameter("mileageRate"));
         double singleReceiptLimit = Double.parseDouble(request.getParameter("singleReceiptLimit"));
         double totalReimbursementLimit = Double.parseDouble(request.getParameter("totalReimbursementLimit"));
         double distanceLimit = Double.parseDouble(request.getParameter("distanceLimit"));
@@ -59,12 +62,13 @@ public class AdminConfigurationServlet extends HttpServlet {
         availableReceiptTypes.clear();
 
         String receiptTypeNamesInput = request.getParameter("receiptTypeNames");
-        String[] receiptTypeNames = receiptTypeNamesInput.split(",");
-
-        availableReceiptTypes.clear();
-        for (String receiptTypeName : receiptTypeNames) {
-            availableReceiptTypes.add(new ReceiptType(receiptTypeName.trim()));
+        if (receiptTypeNamesInput != null && !receiptTypeNamesInput.isEmpty()) {
+            String[] receiptTypeNames = receiptTypeNamesInput.split(",");
+            for (String receiptTypeName : receiptTypeNames) {
+                availableReceiptTypes.add(new ReceiptType(receiptTypeName.trim()));
+            }
         }
+
         adminConfig.setAvailableReceiptTypes(availableReceiptTypes);
 
         session.setAttribute("adminConfig", adminConfig);

@@ -11,7 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7c6edcc5-bd35-433c-80a2-005e12e012ca" name="Changes" comment="working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfigurationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfigurationServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin.jsp" afterDir="false" />
     </list>
