@@ -6,7 +6,7 @@ This Readme file provides step-by-step instructions on how to set up the environ
 
 1. **Setting Up the Environment**
    - Prerequisites
-   - Installing Java Development Kit (JDK)
+   - Installing Java Development Kit (JDK 11 Releases)
    - Installing Apache Maven
    - Setting Environment Variables
 
@@ -28,7 +28,7 @@ This Readme file provides step-by-step instructions on how to set up the environ
 
 Before you begin, make sure you have the following prerequisites installed on your Windows system:
 
-- Java Development Kit (JDK)
+- Java Development Kit (JDK 11 Releases)
 - Apache Maven
 
 **Installing Java Development Kit (JDK):**
