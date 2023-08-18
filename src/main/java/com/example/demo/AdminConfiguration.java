@@ -5,7 +5,7 @@ import java.util.List;
 public class AdminConfiguration {
     private double dailyAllowanceRate = 15.0;
     private double mileageRate = 0.3;
-    private List<ReceiptType> availableReceiptTypes; // Implementacja ReceiptType jest wymagana
+    private List<ReceiptType> availableReceiptTypes;
     private double singleReceiptLimit = 100.0;
     private double totalReimbursementLimit = 500.0;
     private double distanceLimit = 100.0;

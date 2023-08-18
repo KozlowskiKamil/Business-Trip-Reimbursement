@@ -49,25 +49,5 @@ public class ReimbursementClaim {
     public void setClaimedMileage(double claimedMileage) {
         this.claimedMileage = claimedMileage;
     }
-// Getters and setters...
 
-    public double calculateTotalReimbursement(double dailyAllowanceRate, double mileageRate) {
-        double total = 0.0;
-
-        for (Receipt receipt : receipts) {
-            total += receipt.getAmount();
-        }
-
-        if (claimedTripDays > 0) {
-            double dailyAllowance = dailyAllowanceRate * claimedTripDays;
-            total += dailyAllowance;
-        }
-
-        if (claimedMileage > 0) {
-            double mileageReimbursement = mileageRate * claimedMileage;
-            total += mileageReimbursement;
-        }
-
-        return total;
-    }
 }
