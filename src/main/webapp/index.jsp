@@ -16,13 +16,19 @@
                 <label class="form-label" for="tripDate">Trip Date:</label>
                 <input class="form-control mb-2" type="date" id="tripDate" name="tripDate" required>
                 <br>
-                <label class="form-label" for="receiptType">Receipt Type:</label>
-                <select id="receiptType" name="receiptType">
+                <label class="form-label" for="receiptType2">Receipt Type2:</label>
+                <select id="receiptType2" name="receiptType">
                     <option value="taxi">Taxi</option>
                     <option value="hotel">Hotel</option>
                     <option value="plane">Plane Ticket</option>
                     <option value="train">Train</option>
                     <option value="other">Other</option>
+                </select>
+                <label for="receiptTypeSelect">Choose Receipt Type:</label>
+                <select class="form-control mb-3" id="receiptTypeSelect" name="receiptType">
+                    <c:forEach items="${availableReceiptTypes}" var="receiptType">
+                        <option value="${receiptType.name}">${receiptType.name}</option>
+                    </c:forEach>
                 </select>
                 <br>
                 <label class="form-label" for="receiptAmount">Receipt Amount:</label>
@@ -59,7 +65,7 @@
     <hr>
 
     <h4>Admin Page</h4>
-    <a href="/business_trip_reimbursement_war_exploded/admin">
+    <a href="${pageContext.request.contextPath}/admin">
         <button class="btn btn-outline-primary">Go to Admin Page</button>
     </a>
 </div>

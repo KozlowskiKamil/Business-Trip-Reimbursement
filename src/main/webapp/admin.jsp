@@ -56,7 +56,7 @@
     </div>
     <hr>
     <h3>User Page</h3>
-    <a href="/business_trip_reimbursement_war_exploded/reimbursement">
+    <a href="${pageContext.request.contextPath}/reimbursement">
         <button class="btn btn-outline-dark">Go to User Page</button>
     </a>
 </div>
