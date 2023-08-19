@@ -19,13 +19,26 @@ public class AdminConfigurationServlet extends HttpServlet {
     private double mileageRate = 0.3;
     private List<ReceiptType> availableReceiptTypes = new ArrayList<>();
     private double singleReceiptLimit = 100.0;
-    private double totalReimbursementLimit = 500.0;
+    private double totalReimbursementLimit = 2000.0;
     private double distanceLimit = 100.0;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        AdminConfigurationServlet adminConfig = this;
+        if (availableReceiptTypes.isEmpty()) {
+            availableReceiptTypes.add(new ReceiptType("Taxi"));
+            availableReceiptTypes.add(new ReceiptType("Hotel"));
+            availableReceiptTypes.add(new ReceiptType("Plane Ticket"));
+            availableReceiptTypes.add(new ReceiptType("Train"));
+            availableReceiptTypes.add(new ReceiptType("Other"));
+            adminConfig.setAvailableReceiptTypes(availableReceiptTypes);
+        }
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession(true);
         AdminConfigurationServlet adminConfig = this;
-
         session.setAttribute("adminConfig", adminConfig);
         request.getRequestDispatcher("/admin.jsp").forward(request, response);
     }
@@ -38,7 +51,8 @@ public class AdminConfigurationServlet extends HttpServlet {
         double dailyAllowanceRate = 15.0;
         if (dailyAllowanceRateParam != null && !dailyAllowanceRateParam.isEmpty()) {
             dailyAllowanceRate = Double.parseDouble(dailyAllowanceRateParam);
-        }        double mileageRate = Double.parseDouble(request.getParameter("mileageRate"));
+        }
+        double mileageRate = Double.parseDouble(request.getParameter("mileageRate"));
         double singleReceiptLimit = Double.parseDouble(request.getParameter("singleReceiptLimit"));
         double totalReimbursementLimit = Double.parseDouble(request.getParameter("totalReimbursementLimit"));
         double distanceLimit = Double.parseDouble(request.getParameter("distanceLimit"));
@@ -58,8 +72,6 @@ public class AdminConfigurationServlet extends HttpServlet {
         System.out.println("singleReceiptLimit = " + singleReceiptLimit);
         System.out.println("totalReimbursementLimit = " + totalReimbursementLimit);
         System.out.println("distanceLimit = " + distanceLimit);
-
-        availableReceiptTypes.clear();
 
         String receiptTypeNamesInput = request.getParameter("receiptTypeNames");
         if (receiptTypeNamesInput != null && !receiptTypeNamesInput.isEmpty()) {

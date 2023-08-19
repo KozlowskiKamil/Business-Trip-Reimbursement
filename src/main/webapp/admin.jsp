@@ -19,7 +19,7 @@
     <input type="number" step="0.01" name="mileageRate" value="${adminConfig.mileageRate}">
     <br>
 
-        <label for="receiptTypeNames">Available Receipt Types (comma-separated):</label>
+        <label for="receiptTypeNames">Edit Available Receipt Types (comma-separated):</label>
         <input type="text" name="receiptTypeNames"
                value="<%
            AdminConfigurationServlet adminConfig = (AdminConfigurationServlet) request.getSession().getAttribute("adminConfig");
@@ -48,10 +48,10 @@
 <hr>
 
 <form action="${pageContext.request.contextPath}/admin" method="post">
-    <label for="receiptTypeNames">Edit Available Receipt Types (comma-separated):</label>
+    <label for="receiptTypeNames">Show Available Receipt Types :</label>
     <input type="text" name="receiptTypeNames" value="${adminConfig.getFormattedReceiptTypeNames()}">
     <br>
-    <input type="submit" name="action" value="Save Receipt Types">
+    SKASOWAĆĆĆĆĆĆĆĆĆĆĆ
 </form>
 
 <hr>

@@ -37,9 +37,14 @@
     <input type="number" id="claimedTripDays" name="claimedTripDays">
     <br>
 
-    <label for="disableDays">Disable Days:</label>
+    <label for="disableDays">A checkbox is available to disable on specific days:</label>
     <input type="checkbox" id="disableDays" name="disableDays">
     <br>
+
+    <div id="disableDaysInputContainer" style="display: none;">
+        <label for="disabledDaysCount">Enter the number of days to subtract:</label>
+        <input type="number" id="disabledDaysCount" name="disabledDaysCount">
+    </div>
 
     <label for="claimedMileage">Claimed Mileage (km):</label>
     <input type="number" id="claimedMileage" name="claimedMileage" step="0.1"
@@ -74,7 +79,7 @@
 
         if (!isNaN(receiptAmount)) {
             const receiptItem = document.createElement('div');
-            receiptItem.textContent = `${receiptType}: $${receiptAmount.toFixed(2)}`;
+            receiptItem.textContent = receiptType + ': $' + receiptAmount.toFixed(2);
             receiptList.appendChild(receiptItem);
 
             const hiddenInput = document.createElement('input');
@@ -117,6 +122,67 @@
             if (!hasAtLeastOneReceipt()) {
                 event.preventDefault();
                 alert('Please add at least one receipt before calculating reimbursement.');
+            }
+        });
+    });
+
+    const disableDaysCheckbox = document.getElementById('disableDays');
+
+    const disableDaysInputContainer = document.getElementById('disableDaysInputContainer');
+
+    disableDaysCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            disableDaysInputContainer.style.display = 'block';
+        } else {
+            disableDaysInputContainer.style.display = 'none';
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const calculateButton = document.getElementById('calculateButton');
+
+        calculateButton.addEventListener('click', (event) => {
+            if (!hasAtLeastOneReceipt()) {
+                event.preventDefault();
+                alert('Please add at least one receipt before calculating reimbursement.');
+            } else {
+                const tripDate = document.getElementById('tripDate').value;
+                const claimedTripDays = document.getElementById('claimedTripDays').value;
+                const disableDays = document.getElementById('disableDays').checked;
+                const disabledDaysCount = document.getElementById('disabledDaysCount').value;
+                const claimedMileage = document.getElementById('claimedMileage').value;
+
+                const receipts = [];
+                const receiptElements = document.querySelectorAll('input[name^="receipts["]');
+                receiptElements.forEach((element) => {
+                    const receiptType = element.value;
+                    const receiptAmount = parseFloat(element.nextElementSibling.value);
+                    receipts.push({type: receiptType, amount: receiptAmount});
+                });
+
+                const reimbursementData = {
+                    tripDate: tripDate,
+                    claimedTripDays: claimedTripDays,
+                    disableDays: disableDays,
+                    disabledDaysCount: disabledDaysCount,
+                    claimedMileage: claimedMileage,
+                    receipts: receipts
+                };
+
+                fetch('/reimbursement', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(reimbursementData)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Data saved successfully:', data);
+                    })
+                    .catch(error => {
+                        console.error('Error saving data:', error);
+                    });
             }
         });
     });
