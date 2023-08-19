@@ -9,11 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c6edcc5-bd35-433c-80a2-005e12e012ca" name="Changes" comment="save point">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/GetReceiptTypesServlet.java" afterDir="false" />
+    <list default="true" id="7c6edcc5-bd35-433c-80a2-005e12e012ca" name="Changes" comment="add method to edit Receipt Type and dynamic display">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementClaimServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementClaimServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="add_admin_panel" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -230,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692473968536</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add method to edit Receipt Type and dynamic display">
+      <option name="closed" value="true" />
+      <created>1692475809535</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692475809535</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,6 +247,7 @@
     <MESSAGE value="check point" />
     <MESSAGE value="add methods in admin panel&#10;edit, and save to json" />
     <MESSAGE value="save point" />
-    <option name="LAST_COMMIT_MESSAGE" value="save point" />
+    <MESSAGE value="add method to edit Receipt Type and dynamic display" />
+    <option name="LAST_COMMIT_MESSAGE" value="add method to edit Receipt Type and dynamic display" />
   </component>
 </project>
