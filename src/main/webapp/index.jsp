@@ -4,70 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Reimbursement Claim</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-<h1>Create a New Reimbursement Claim</h1>
-
-<form action="reimbursement" method="post">
-    <label for="tripDate">Trip Date:</label>
-    <input type="date" id="tripDate" name="tripDate" required>
-    <br>
-
-    <label for="receiptType">Receipt Type:</label>
-    <select id="receiptType" name="receiptType">
-        <option value="taxi">Taxi</option>
-        <option value="hotel">Hotel</option>
-        <option value="plane">Plane Ticket</option>
-        <option value="train">Train</option>
-        <option value="other">Other</option>
-    </select>
-    <br>
-
-    <label for="receiptAmount">Receipt Amount:</label>
-    <input type="number" id="receiptAmount" name="receiptAmount" step="0.01" required
-           max="${sessionScope.singleReceiptLimit != null ? sessionScope.singleReceiptLimit : 100.0}">
-    <br>
-
-    <button type="button" id="addReceiptButton">Add Receipt</button>
-    <br>
-
-    <div id="receiptList"></div>
-
-    <label for="claimedTripDays">Claimed Trip Days:</label>
-    <input type="number" id="claimedTripDays" name="claimedTripDays">
-    <br>
-
-    <label for="disableDays">A checkbox is available to disable on specific days:</label>
-    <input type="checkbox" id="disableDays" name="disableDays">
-    <br>
-
-    <div id="disableDaysInputContainer" style="display: none;">
-        <label for="disabledDaysCount">Enter the number of days to subtract:</label>
-        <input type="number" id="disabledDaysCount" name="disabledDaysCount">
+<div class="container text-center">
+    <h3>Create a New Reimbursement Claim</h3>
+    <div class="row justify-content-center">
+        <div class="col-12" style="max-width: 500px;">
+            <form action="reimbursement" method="post">
+                <label class="form-label" for="tripDate">Trip Date:</label>
+                <input class="form-control mb-2" type="date" id="tripDate" name="tripDate" required>
+                <br>
+                <label class="form-label" for="receiptType">Receipt Type:</label>
+                <select id="receiptType" name="receiptType">
+                    <option value="taxi">Taxi</option>
+                    <option value="hotel">Hotel</option>
+                    <option value="plane">Plane Ticket</option>
+                    <option value="train">Train</option>
+                    <option value="other">Other</option>
+                </select>
+                <br>
+                <label class="form-label" for="receiptAmount">Receipt Amount:</label>
+                <input class="form-control mb-2" type="number" id="receiptAmount" name="receiptAmount" step="0.01"
+                       required
+                       max="${sessionScope.singleReceiptLimit != null ? sessionScope.singleReceiptLimit : 100.0}">
+                <button type="button" class="btn btn-primary mb-2" type="button" id="addReceiptButton">Add Receipt
+                </button>
+                <br>
+                <div id="receiptList"></div>
+                <label class="form-label mt-2" for="claimedTripDays">Claimed Trip Days:</label>
+                <input class="form-control mb-2" type="number" id="claimedTripDays" name="claimedTripDays">
+                <br>
+                <label class="form-label" for="disableDays">A checkbox is available to disable on specific days:</label>
+                <input class="form-check-input mt-0" type="checkbox" id="disableDays" name="disableDays">
+                <br>
+                <div id="disableDaysInputContainer" style="display: none;">
+                    <label class="form-label" for="disabledDaysCount">Enter the number of days to subtract:</label>
+                    <input class="form-control mb-2" type="number" id="disabledDaysCount" name="disabledDaysCount">
+                </div>
+                <label class="form-label mt-2" for="claimedMileage">Claimed Mileage (km):</label>
+                <input class="form-control mb-2" type="number" id="claimedMileage" name="claimedMileage" step="0.1"
+                       max="${sessionScope.distanceLimit != null ? sessionScope.distanceLimit : 100.0}">
+                <button class="btn btn-primary mb-2" type="submit" id="calculateButton">Calculate Reimbursement</button>
+                <br/>
+            </form>
+        </div>
     </div>
+    <h4>Total Reimbursement Amount: <%= request.getAttribute("totalReimbursement") %> $</h4>
+    <c:if test="${sessionScope.totalReimbursementLimit != null}">
+        <h4>Total Reimbursement Limit: <%= session.getAttribute("totalReimbursementLimit") %> $</h4>
+    </c:if>
 
-    <label for="claimedMileage">Claimed Mileage (km):</label>
-    <input type="number" id="claimedMileage" name="claimedMileage" step="0.1"
-           max="${sessionScope.distanceLimit != null ? sessionScope.distanceLimit : 100.0}">
+    <hr>
 
-    <br>
-
-    <button type="submit" id="calculateButton">Calculate Reimbursement</button>
-
-</form>
-
-<h2>Total Reimbursement Amount: <%= request.getAttribute("totalReimbursement") %> $</h2>
-<c:if test="${sessionScope.totalReimbursementLimit != null}">
-    <h2>Total Reimbursement Limit: <%= session.getAttribute("totalReimbursementLimit") %> $</h2>
-</c:if>
-
-<hr>
-
-<h3>Admin Page</h3>
-<a href="/business_trip_reimbursement_war_exploded/admin">
-    <button>Go to Admin Page</button>
-</a>
-
+    <h4>Admin Page</h4>
+    <a href="/business_trip_reimbursement_war_exploded/admin">
+        <button class="btn btn-outline-primary">Go to Admin Page</button>
+    </a>
+</div>
 <script>
     const addReceiptButton = document.getElementById('addReceiptButton');
     const receiptList = document.getElementById('receiptList');
@@ -187,5 +182,8 @@
         });
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
 </html>
