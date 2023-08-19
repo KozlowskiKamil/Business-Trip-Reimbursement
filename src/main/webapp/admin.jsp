@@ -35,6 +35,8 @@
            }
        %>"
                 >
+                <label class="form-label" for="newReceiptType">Add New Receipt Type:</label>
+                <input class="form-control mb-3" type="text" id="newReceiptType" name="newReceiptType">
 
                 <label class="form-label" for="singleReceiptLimit">Single Receipt Limit ($):</label>
                 <input class="form-control mb-3 " type="number" step="0.01" name="singleReceiptLimit"
@@ -53,14 +55,6 @@
         </div>
     </div>
     <hr>
-
-    <%--    <form action="${pageContext.request.contextPath}/admin" method="post">--%>
-    <%--        <label class="form-label" for="receiptTypeNames">Show Available Receipt Types :</label>--%>
-    <%--        <input class="form-control mb-3 " type="text" name="receiptTypeNames"--%>
-    <%--               value="${adminConfig.getFormattedReceiptTypeNames()}">--%>
-    <%--    </form>--%>
-    <%--    <hr>--%>
-
     <h3>User Page</h3>
     <a href="/business_trip_reimbursement_war_exploded/reimbursement">
         <button class="btn btn-outline-dark">Go to User Page</button>

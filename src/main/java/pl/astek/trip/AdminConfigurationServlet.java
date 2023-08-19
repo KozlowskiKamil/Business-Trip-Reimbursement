@@ -94,10 +94,19 @@ public class AdminConfigurationServlet extends HttpServlet {
             });
         }
 
+        String newReceiptTypeName = request.getParameter("newReceiptType");
+        if (newReceiptTypeName != null && !newReceiptTypeName.isEmpty()) {
+            ReceiptType newReceiptType = new ReceiptType(newReceiptTypeName);
+            availableReceiptTypes.add(newReceiptType);
+            System.out.println("newReceiptTypeName = " + newReceiptTypeName);
+        }
+
+
         adminConfig.setAvailableReceiptTypes(availableReceiptTypes);
 
         session.setAttribute("adminConfig", adminConfig);
-
+        request.setAttribute("adminConfig", adminConfig);
+        session.setAttribute("availableReceiptTypes", availableReceiptTypes);
         response.sendRedirect(request.getContextPath() + "/admin.jsp");
     }
 
