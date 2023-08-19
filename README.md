@@ -107,5 +107,4 @@ Before you begin, make sure you have the following prerequisites installed on yo
 By following these steps, you should be able to set up the environment, build the application, configure the Apache Tomcat server, and run the tests successfully.
 
 Feel free to reach out if you need any further assistance or have questions.
-```
 
