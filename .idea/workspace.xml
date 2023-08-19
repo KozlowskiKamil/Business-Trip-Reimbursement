@@ -9,14 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c6edcc5-bd35-433c-80a2-005e12e012ca" name="Changes" comment="working">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/AdminConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/AdminConfigurationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfigurationServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Receipt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/Receipt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReceiptType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReceiptType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementClaim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementClaim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/ReimbursementClaimServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementClaimServlet.java" afterDir="false" />
+    <list default="true" id="7c6edcc5-bd35-433c-80a2-005e12e012ca" name="Changes" comment="check point">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfigurationServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/AdminConfigurationServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementClaimServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/astek/trip/ReimbursementClaimServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692319050350</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="check point">
+      <option name="closed" value="true" />
+      <created>1692399505276</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692399505276</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +223,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="500 error" />
     <MESSAGE value="working" />
-    <option name="LAST_COMMIT_MESSAGE" value="working" />
+    <MESSAGE value="check point" />
+    <option name="LAST_COMMIT_MESSAGE" value="check point" />
   </component>
 </project>
