@@ -9,11 +9,15 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @WebServlet("/admin")
 public class AdminConfigurationServlet extends HttpServlet {
+    private static final Logger logger = Logger.getLogger(ReimbursementClaimServlet.class.getName());
 
     private double dailyAllowanceRate = 15.0;
     private double mileageRate = 0.3;
@@ -44,6 +48,7 @@ public class AdminConfigurationServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        logger.setLevel(Level.INFO);
         HttpSession session = request.getSession();
         AdminConfigurationServlet adminConfig = (AdminConfigurationServlet) session.getAttribute("adminConfig");
 
@@ -67,18 +72,26 @@ public class AdminConfigurationServlet extends HttpServlet {
         session.setAttribute("singleReceiptLimit", singleReceiptLimit);
         session.setAttribute("totalReimbursementLimit", totalReimbursementLimit);
         session.setAttribute("distanceLimit", distanceLimit);
-        System.out.println("dailyAllowanceRate = " + dailyAllowanceRate);
-        System.out.println("mileageRate = " + mileageRate);
-        System.out.println("singleReceiptLimit = " + singleReceiptLimit);
-        System.out.println("totalReimbursementLimit = " + totalReimbursementLimit);
-        System.out.println("distanceLimit = " + distanceLimit);
+        logger.info("dailyAllowanceRate = " + dailyAllowanceRate);
+        logger.info("mileageRate = " + mileageRate);
+        logger.info("singleReceiptLimit = " + singleReceiptLimit);
+        logger.info("totalReimbursementLimit = " + totalReimbursementLimit);
+        logger.info("distanceLimit = " + distanceLimit);
 
         String receiptTypeNamesInput = request.getParameter("receiptTypeNames");
         if (receiptTypeNamesInput != null && !receiptTypeNamesInput.isEmpty()) {
             String[] receiptTypeNames = receiptTypeNamesInput.split(",");
-            for (String receiptTypeName : receiptTypeNames) {
-                availableReceiptTypes.add(new ReceiptType(receiptTypeName.trim()));
-            }
+            List<String> trimmedTypeNames = Arrays.stream(receiptTypeNames)
+                    .map(String::trim)
+                    .collect(Collectors.toList());
+
+            // Sprawdź, czy każda nazwa typu istnieje na liście; jeśli nie, dodaj ją
+            trimmedTypeNames.forEach(trimmedReceiptTypeName -> {
+                if (!availableReceiptTypes.stream()
+                        .anyMatch(existingType -> existingType.getName().equals(trimmedReceiptTypeName))) {
+                    availableReceiptTypes.add(new ReceiptType(trimmedReceiptTypeName));
+                }
+            });
         }
 
         adminConfig.setAvailableReceiptTypes(availableReceiptTypes);

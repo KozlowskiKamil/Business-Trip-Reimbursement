@@ -11,6 +11,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -19,7 +23,10 @@ import java.util.List;
 
 @WebServlet("/reimbursement")
 public class ReimbursementClaimServlet extends HttpServlet {
+    private static final Logger logger = Logger.getLogger(ReimbursementClaimServlet.class.getName());
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.setLevel(Level.INFO);
         LocalDate tripDate = LocalDate.parse(request.getParameter("tripDate"));
         List<Receipt> receipts = new ArrayList<>();
 
@@ -29,7 +36,7 @@ public class ReimbursementClaimServlet extends HttpServlet {
             String receiptType = receiptTypes[i];
             double receiptAmount = Double.parseDouble(receiptAmounts[i]);
             receipts.add(new Receipt(receiptType, receiptAmount));
-            System.out.println("receipts = " + receipts.get(i).toString());
+            logger.info("receipts = " + receipts.get(i).toString());
         }
 
         int claimedTripDays = Integer.parseInt(request.getParameter("claimedTripDays"));
@@ -63,15 +70,15 @@ public class ReimbursementClaimServlet extends HttpServlet {
         session.setAttribute("totalReimbursement", totalReimbursement);
         session.setAttribute("totalReimbursementLimit", totalReimbursementLimit);
         request.setAttribute("totalReimbursementLimit", totalReimbursementLimit);
-        saveReimbursementDataToJson(claim, totalReimbursement, tripDate.toString(),claimedTripDays, claimedMileage, receipts);
+        saveReimbursementDataToJson(claim, totalReimbursement, tripDate.toString(), claimedTripDays, claimedMileage, receipts);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         dispatcher.forward(request, response);
 
     }
 
 
-
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.setLevel(Level.INFO);
         HttpSession session = request.getSession();
         double dailyAllowanceRate;
         double mileageRate;
@@ -95,6 +102,7 @@ public class ReimbursementClaimServlet extends HttpServlet {
     }
 
     private void saveReimbursementDataToJson(ReimbursementClaim claim, double totalReimbursement, String tripDate, int claimedTripDays, double claimedMileage, List<Receipt> receipts) throws IOException {
+        logger.setLevel(Level.INFO);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
@@ -104,16 +112,14 @@ public class ReimbursementClaimServlet extends HttpServlet {
         jsonData.put("claimedTripDays", claimedTripDays);
         jsonData.put("claimedMileage", claimedMileage);
         jsonData.put("receipts", String.valueOf(receipts));
-//        jsonData.put("disabledDaysCount", disabledDaysCount);
-
 
         try {
-            File jsonFile = new File("C:\\Users\\Kamil\\Desktop\\Projects\\Business-Trip-Reimbursement\\trip.json");
+            File jsonFile = new File("trip.json");
             objectMapper.writeValue(jsonFile, jsonData);
-            System.out.println("Dane zostały zapisane w pliku JSON.");
+            logger.info("The data was saved in a JSON file.");
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Wystąpił błąd podczas zapisywania danych do pliku JSON.");
+            logger.info("An error occurred while writing data to the JSON file.");
         }
     }
 
