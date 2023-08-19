@@ -16,19 +16,9 @@
                 <label class="form-label" for="tripDate">Trip Date:</label>
                 <input class="form-control mb-2" type="date" id="tripDate" name="tripDate" required>
                 <br>
-                <label class="form-label" for="receiptType2">Receipt Type2:</label>
-                <select id="receiptType2" name="receiptType">
-                    <option value="taxi">Taxi</option>
-                    <option value="hotel">Hotel</option>
-                    <option value="plane">Plane Ticket</option>
-                    <option value="train">Train</option>
-                    <option value="other">Other</option>
-                </select>
-                <label for="receiptTypeSelect">Choose Receipt Type:</label>
-                <select class="form-control mb-3" id="receiptTypeSelect" name="receiptType">
-                    <c:forEach items="${availableReceiptTypes}" var="receiptType">
-                        <option value="${receiptType.name}">${receiptType.name}</option>
-                    </c:forEach>
+                <label for="receiptType">Choose Receipt Type:</label>
+                <select class="form-control mb-3" id="receiptType" name="receiptType">
+                    <option value="">Select Receipt Type</option>
                 </select>
                 <br>
                 <label class="form-label" for="receiptAmount">Receipt Amount:</label>
@@ -187,6 +177,28 @@
             }
         });
     });
+</script>
+<script>
+    function populateReceiptTypes() {
+        var select = document.getElementById("receiptType");
+        select.innerHTML = '<option value="">Select Receipt Type</option>';
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "${pageContext.request.contextPath}/getReceiptTypes", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var receiptTypes = JSON.parse(xhr.responseText);
+                receiptTypes.forEach(function (receiptType) {
+                    var option = document.createElement("option");
+                    option.value = receiptType.name;
+                    option.text = receiptType.name;
+                    select.appendChild(option);
+                });
+            }
+        };
+        xhr.send();
+    }
+
+    window.onload = populateReceiptTypes;
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

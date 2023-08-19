@@ -11,19 +11,44 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/reimbursement")
 public class ReimbursementClaimServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(ReimbursementClaimServlet.class.getName());
+
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        System.out.println("ReimbursementClaimServlet initialized");
+
+        // Stwórz instancję AdminConfigurationServlet
+        AdminConfigurationServlet adminConfig = new AdminConfigurationServlet();
+
+        // Inicjalizuj listę availableReceiptTypes
+        List<ReceiptType> availableReceiptTypes = new ArrayList<>();
+        availableReceiptTypes.add(new ReceiptType("Taxi"));
+        availableReceiptTypes.add(new ReceiptType("Train"));
+        availableReceiptTypes.add(new ReceiptType("Boat"));
+
+        // Tutaj możesz dodać inne typy, jeśli są potrzebne
+
+        // Ustaw zainicjowaną listę w instancji AdminConfigurationServlet
+        adminConfig.setAvailableReceiptTypes(availableReceiptTypes);
+
+        // Przekaż listę do sesji, aby była dostępna w innych częściach aplikacji
+        getServletContext().setAttribute("availableReceiptTypes", availableReceiptTypes);
+        System.out.println("availableReceiptTypes: " + availableReceiptTypes);
+
+    }
+
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         logger.setLevel(Level.INFO);
@@ -122,5 +147,4 @@ public class ReimbursementClaimServlet extends HttpServlet {
             logger.info("An error occurred while writing data to the JSON file.");
         }
     }
-
 }
