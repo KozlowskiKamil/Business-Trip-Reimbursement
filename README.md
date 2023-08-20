@@ -15,7 +15,7 @@ This Readme file provides step-by-step instructions on how to set up the environ
    - Building with Maven
 
 3. **Configuring Apache Tomcat**
-   - Downloading Apache Tomcat
+   - Downloading Apache Tomcat 10
    - Configuring Tomcat
 
 4. **Running the Tests**
