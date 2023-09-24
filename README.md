@@ -1,4 +1,4 @@
-# Project Business Trip Reimbursement
+# Project Business Trip Reimbursement JAVA EE
 
 This Readme file provides step-by-step instructions on how to set up the environment, build the application, configure the Apache Tomcat server, and run the tests for the project. Please follow the guidelines below for a smooth setup and execution.
 
